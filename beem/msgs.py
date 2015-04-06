@@ -27,19 +27,26 @@ Message generator implementations
 import string
 import random
 import time
+import uuid
+import json
+import datetime
 
-
-def GaussianSize(cid, sequence_size, target_size):
+def GaussianSize(cid, sequence_size, target_size, aid, aname, topic):
     """
     Message generator creating gaussian distributed message sizes
     centered around target_size with a deviance of target_size / 20
     """
     num = 1
     while num <= sequence_size:
-        topic = "mqtt-malaria/%s/data/%d/%d" % (cid, num, sequence_size)
+        uid = uuid.uuid4()
+        msg_id = uid.hex
+        topic = topic
+        msg_time = datetime.datetime.now().isoformat()
         real_size = int(random.gauss(target_size, target_size / 20))
-        payload = ''.join(random.choice(string.hexdigits) for _ in range(real_size))
-        yield (num, topic, payload)
+        msg = ''.join(random.choice(string.hexdigits) for _ in range(real_size))
+        payload = {'id': msg_id, 'aid': aid, 'an': aname, 't': msg, 'ds': msg_time, 'f': '0', 'counter': '0'}
+        jsn_payload = json.dumps(payload)
+        yield (num, topic, jsn_payload)
         num = num + 1
 
 
@@ -85,7 +92,7 @@ def createGenerator(label, options, index=None):
     cid = label
     if index:
         cid += "_" + str(index)
-    msg_gen = GaussianSize(cid, options.msg_count, options.msg_size)
+    msg_gen = GaussianSize(cid, options.msg_count, options.msg_size, options.aid, options.aname, options.topic)
     if options.timing:
         msg_gen = TimeTracking(msg_gen)
     if options.msgs_per_second > 0:

@@ -64,6 +64,11 @@ optional arguments:
                         username is mqtt (default: mqtt)
   --password PASSWORD   Password for Connecting to the Broker, Default
                         password is mqtt (default: mqtt)
+  --aid AID             AuthorID, Default aid is 1 (default: 1)
+  --aname ANAME         AuthorName, Default aname is mosquitto (default:
+                        mosquitto)
+  --topic TOPIC         MQTT Topic Name, Default topic is /clem/healthcheck/#
+                        (default: /clem/healthcheck/#)
 ```
 
 Examples
