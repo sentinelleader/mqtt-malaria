@@ -94,7 +94,7 @@ class TrackingSender():
         publish_count = 0
         self.time_start = time.time()
         for _, topic, payload in msg_generator:
-            result, mid = self.mqttc.publish(topic, payload, qos)
+            result, mid = self.mqttc.publish(topic, payload)
             assert(result == 0)
             self.msg_statuses[mid] = MsgStatus(mid, len(payload))
             publish_count += 1
