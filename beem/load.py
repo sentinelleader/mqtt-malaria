@@ -59,10 +59,11 @@ class TrackingSender():
     """
     msg_statuses = {}
 
-    def __init__(self, host, port, cid):
+    def __init__(self, host, port, cid, username, password):
         self.cid = cid
         self.log = logging.getLogger(__name__ + ":" + cid)
         self.mqttc = paho.Client(cid)
+        self.mqttc.username_pw_set(username, password)
         self.mqttc.on_publish = self.publish_handler
         # TODO - you _probably_ want to tweak this
         if hasattr(self.mqttc, "max_inflight_messages_set"):

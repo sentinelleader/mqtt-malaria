@@ -69,7 +69,7 @@ def _worker(options, proc_num, auth=None):
             cid = auth.split(":")[0]
     else:
         # FIXME - add auth support here too dummy!
-        ts = beem.load.TrackingSender(options.host, options.port, cid)
+        ts = beem.load.TrackingSender(options.host, options.port, cid, options.username, options.password)
 
     # Provide a custom generator
     #msg_gen = my_custom_msg_generator(options.msg_count)

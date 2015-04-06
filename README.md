@@ -60,6 +60,10 @@ optional arguments:
   -P PROCESSES, --processes PROCESSES
                         How many separate processes to spin up
                         (multiprocessing) (default: 1)
+  --username USERNAME   Username for Connecting to the Broker, Default
+                        username is mqtt (default: mqtt)
+  --password PASSWORD   Password for Connecting to the Broker, Default
+                        password is mqtt (default: mqtt)
 ```
 
 Examples
