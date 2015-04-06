@@ -134,6 +134,12 @@ def add_args(subparsers):
     parser.add_argument(
         "--thread_ratio", type=int, default=1,
         help="Threads per process (bridged multiprocessing) WARNING! VERY ALPHA!")
+    parser.add_argument(
+        "--username", default="mqtt",
+        help="Username for Connecting to the Broker, Default username is mqtt")
+    parser.add_argument(
+        "--password", default="mqtt",
+        help="Password for Connecting to the Broker, Default password is mqtt")
 
     parser.add_argument(
         "-b", "--bridge", action="store_true",
