@@ -44,7 +44,7 @@ def GaussianSize(cid, sequence_size, target_size, aid, aname, topic):
         msg_time = datetime.datetime.now().isoformat()
         real_size = int(random.gauss(target_size, target_size / 20))
         msg = ''.join(random.choice(string.hexdigits) for _ in range(real_size))
-        payload = {'id': msg_id, 'aid': aid, 'an': aname, 't': msg, 'ds': msg_time, 'f': '0', 'counter': '0'}
+        payload = {'id': msg_id, 'aid': aid, 'an': aname, 't': msg, 'ds': msg_time, 'f': 0, 'counter': 0}
         jsn_payload = json.dumps(payload)
         yield (num, topic, jsn_payload)
         num = num + 1
